@@ -1,0 +1,21 @@
+steps:
+  - name: 'docker'
+      args: [ 'docker', 'build', '-t', 'paulosantama/mfc4-d5-ci-cd-nestjs:latest', '-t', 'paulosantama/mfc4-d5-ci-cd-nestjs:$SHORT_SHA', '.' ]
+
+  - name: 'docker'
+      args: [ 'run', '-d', '--name', 'desafio-05', 'paulosantama/mfc4-d5-ci-cd-nestjs:latest' ]
+
+  - name: 'npm'
+      args: [ 'run', 'test' ]
+
+  - name: 'npm'
+      args: [ 'run', 'test:e2e' ]
+
+  - name: 'npm'
+      args: [ 'run', 'test:cov' ]
+
+  - name: 'docker'
+      args: [ 'push', 'paulosantama/mfc4-d5-ci-cd-nestjs:latest']
+
+  - name: 'docker'
+      args: [ 'push', 'paulosantama/mfc4-d5-ci-cd-nestjs:$SHORT_SHA' ]
