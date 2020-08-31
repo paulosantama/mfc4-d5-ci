@@ -1,4 +1,4 @@
-on: [ push, pull_request ]
+on: [ pull_request ]
 
 jobs:
   tests:
@@ -7,7 +7,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: 12.18.3
+        node-version: [ 12.18.3 ]
 
     steps:
       - uses: actions/checkout@v2
